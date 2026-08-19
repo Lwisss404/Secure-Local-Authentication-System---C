@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#include "auth.h"
+
 int main() {
 
     int choice;
@@ -17,6 +19,7 @@ int main() {
     {
         case 1:
             printf("Registration selected... \n");
+            registerUser();
             break;
 
         case 2:
