@@ -1,10 +1,9 @@
 #include <stdio.h>
 
 #include "auth.h"
+#include "input.h"
 
 int main() {
-
-    int choice;
 
     printf("\n===== Secure Authentication =====\n");
     printf("Choose Service:\n");
@@ -13,7 +12,7 @@ int main() {
     printf("3. Exit\n");
 
     printf("Choose an option: ");
-    scanf("%d", &choice);
+    int choice = readMenuChoice();
 
     switch(choice)
     {

@@ -9,7 +9,7 @@ int usernameExists(const char* username) {
 
     FILE *file = fopen(DATABASE_FILE, "r");
 
-    if (file == NULL) 
+    if (file == NULL)
     {
         return 0;
     }
@@ -17,7 +17,7 @@ int usernameExists(const char* username) {
     char storedUsername [32 + 1];
     char storedPassword [128 + 1];
 
-    while (fscanf(file, "%32s:%128s", storedUsername, storedPassword) == 2)
+    while (fscanf(file, "%32[^:]:%128s", storedUsername, storedPassword) == 2)
     {
         if (strcmp(username, storedUsername) == 0)
         {
