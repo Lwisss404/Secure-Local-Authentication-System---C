@@ -1,6 +1,12 @@
 #ifndef AUTH_H
 #define AUTH_H
 
-void registerUser(void);
+typedef enum {
+    AUTH_SUCCESS,
+    AUTH_CANCELLED,
+    AUTH_FAILURE
+} authResult;
+
+authResult registerUser(void);
 
 #endif

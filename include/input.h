@@ -9,6 +9,6 @@ typedef enum {
 } inputResult;
 
 inputResult readLine(char* buffer, size_t size);
-int readMenuChoice(void);
+int readChoice(int min, int max);
 
 #endif

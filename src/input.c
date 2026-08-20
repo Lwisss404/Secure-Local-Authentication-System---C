@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "input.h"
 
@@ -31,12 +32,15 @@ inputResult readLine(char* buffer, size_t size) {
     return INPUT_OK;
 }
 
-int readMenuChoice(void) {
+int readChoice(int min, int max) {
 
-    char buffer[2];
+    char buffer[3];
 
-    readLine(buffer, sizeof(buffer));
+    if (readLine(buffer, sizeof(buffer)) == INPUT_TOO_LONG) { return -1; }
+    if (!isdigit((unsigned char)buffer[0])) { return -1; }
 
-    if (buffer[0] < '1' || buffer[0] > '3' || buffer[1] != '\0') { return -1; }
-    return buffer[0] - '0';
+    int choice = buffer[0] - '0';
+
+    if (choice < min || choice > max || buffer[1] != '\0') { return -1; }
+    return choice;
 }

@@ -10,12 +10,27 @@
 #define PASSWORD_BUFFER_SIZE 160
 
 
-void registerUser(void) {
+authResult registerUser(void) {
     
     char username [USERNAME_BUFFER_SIZE];
     char password [PASSWORD_BUFFER_SIZE];
 
     printf("\n===== Register =====\n");
+    printf("0. Back\n");
+    printf("1. Continue\n");
+
+    /* menu for going back to main menu in case of misinput */
+    int running = 1;
+    while (running) {
+        printf("Choose an option: ");
+        int choiceNav = readChoice(0, 1);
+        switch (choiceNav)
+        {
+            case 0: printf("\nReturning To Main Menu...\n"); running = 0; return AUTH_CANCELLED;
+            case 1: printf("\nContinuing...\n"); running = 0; break;
+            default: printf("\nWrong Option!\n"); break;
+        }
+    }
 
     printf("\nUsername: ");
     /* verify username length and handle stdin overflow */
@@ -23,7 +38,7 @@ void registerUser(void) {
     if (resultInputUsername == INPUT_TOO_LONG)
     {
         printf("\nError: Username Input Too Long!\n");
-        return;
+        return AUTH_FAILURE;
     }
 
     /* verify non empty, lengthy, valid characters username */
@@ -34,8 +49,10 @@ void registerUser(void) {
     if (resultValUser == VALID_USERNAME)
     { 
         /* check if username exist already in the database */
-        if (usernameExists(username)) { printf("Error: Username Exists In Database!\n"); return; }
+        if (usernameExists(username)) { printf("Error: Username Exists In Database!\n"); return AUTH_FAILURE; }
         else { printf("Valid Username!\n"); } 
+    } else {
+        return AUTH_FAILURE;
     }
 
     printf("\nPassword: ");
@@ -44,7 +61,7 @@ void registerUser(void) {
     if (resultInputPassword == INPUT_TOO_LONG)
     {
         printf("\nError: Password Input Too Long!\n");
-        return;
+        return AUTH_FAILURE;
     }
 
     /* verify valid length, valid characters password */
@@ -63,9 +80,12 @@ void registerUser(void) {
         {
             printf("\n===== Registration Successful =====\n");
             printf("Welcome.. %s!\n", username);
+            return AUTH_SUCCESS;
         } else 
         {
             printf("Error with the registration, please try again!");
+            return AUTH_FAILURE;
         }
     }
+    return AUTH_FAILURE;
 }

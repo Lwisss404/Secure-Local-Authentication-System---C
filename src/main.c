@@ -4,35 +4,40 @@
 #include "input.h"
 
 int main() {
-
-    printf("\n===== Secure Authentication =====\n");
-    printf("Choose Service:\n");
-    printf("1. Register\n");
-    printf("2. Login\n");
-    printf("3. Exit\n");
-
-    printf("Choose an option: ");
-    int choice = readMenuChoice();
-
-    switch(choice)
+    int running = 1;
+    while (running)
     {
-        case 1:
-            printf("Registration selected... \n");
-            registerUser();
-            break;
+        printf("\n===== Secure Authentication =====\n");
+        printf("Choose Service:\n");
+        printf("1. Register\n");
+        printf("2. Login\n");
+        printf("3. Exit\n");
 
-        case 2:
-            printf("Login selected... \n");
-            break;
+        printf("Choose an option: ");
+        int choiceMenu = readChoice(1, 3);
 
-        case 3:
-            printf("Exit selected... Farewell!\n");
-            break;
+        switch(choiceMenu)
+        {
+            case 1:
+                printf("Registration selected... \n");
+                authResult regResult = registerUser();
+                if (regResult == AUTH_CANCELLED) { printf("\n-Returned To Main Menu-\n"); }
+                break;
 
-        default:
-            printf("Invalid selection!\n");
-            break;
+            case 2:
+                printf("Login selected... \n");
+                break;
+
+            case 3:
+                printf("Exit selected... Farewell!\n");
+                running = 0;
+                break;
+
+            default:
+                printf("Invalid selection!\n");
+                printf("DEBUG: %d", choiceMenu);
+                break;
+        }
     }
-
     return 0;
 }
