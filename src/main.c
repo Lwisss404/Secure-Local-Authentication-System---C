@@ -22,12 +22,14 @@ int main() {
                 printf("Registration selected... \n");
                 authResult regResult = registerUser();
                 if (regResult == AUTH_CANCELLED) { printf("\n-Returned To Main Menu-\n"); }
+                if (regResult == AUTH_FAILURE) { printf("\n--Fatal Error: Unexpected/internal/input failure!--\n"); }
                 break;
 
             case 2:
                 printf("Login selected... \n");
                 authResult loginResult = loginUser();
                 if(loginResult == AUTH_CANCELLED) { printf("\n-Returned To Main Menu-\n"); }
+                if (loginResult == AUTH_FAILURE) { printf("\n--Fatal Error: Unexpected/Internal/Input Failure!--\n"); }
                 break;
 
             case 3:

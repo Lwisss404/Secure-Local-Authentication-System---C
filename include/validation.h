@@ -24,4 +24,3 @@ typedef enum {
 passwordValidationResult validatePassword(const char* password);
 
 #endif
-

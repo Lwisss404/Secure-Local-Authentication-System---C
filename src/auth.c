@@ -20,16 +20,16 @@ authResult registerUser(void) {
     printf("1. Continue\n");
 
     /* menu for going back to main menu in case of misinput */
-    int running = 1;
-    while (running) {
+    while (1) {
         printf("Choose an option: ");
         int choiceNav = readChoice(0, 1);
         switch (choiceNav)
         {
-            case 0: printf("\nReturning To Main Menu...\n"); running = 0; return AUTH_CANCELLED;
-            case 1: printf("\nContinuing...\n"); running = 0; break;
-            default: printf("\nWrong Option!\n"); break;
+            case 0: printf("\nReturning To Main Menu...\n"); return AUTH_CANCELLED;
+            case 1: printf("\nContinuing...\n"); break;
+            default: printf("\nWrong Option!\n"); continue;
         }
+        break;
     }
 
     while (1)
