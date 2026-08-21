@@ -26,6 +26,8 @@ int main() {
 
             case 2:
                 printf("Login selected... \n");
+                authResult loginResult = loginUser();
+                if(loginResult == AUTH_CANCELLED) { printf("\n-Returned To Main Menu-\n"); }
                 break;
 
             case 3:
@@ -35,7 +37,6 @@ int main() {
 
             default:
                 printf("Invalid selection!\n");
-                printf("DEBUG: %d", choiceMenu);
                 break;
         }
     }

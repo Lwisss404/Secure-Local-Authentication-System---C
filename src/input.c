@@ -8,7 +8,7 @@ inputResult readLine(char* buffer, size_t size) {
     // checks if error/failure occured when fgetting input (EOF, input error...)
     if (fgets(buffer, size, stdin) == NULL)
     {
-        return INPUT_TOO_LONG;
+        return INPUT_ERROR;
     }
     
     // chech buffer overflow and flush overflow characters

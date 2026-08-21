@@ -26,7 +26,6 @@ usernameValidationResult validateUsername(const char* username) {
     {
         if(!isalnum((unsigned char)username[i]) && username[i] != '_') { result |= USERNAME_INVALID_CHARACTERS; break;}
     }
-
     return result;
 }
 

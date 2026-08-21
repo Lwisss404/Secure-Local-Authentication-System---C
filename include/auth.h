@@ -8,5 +8,6 @@ typedef enum {
 } authResult;
 
 authResult registerUser(void);
+authResult loginUser(void);
 
 #endif

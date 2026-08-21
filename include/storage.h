@@ -3,5 +3,6 @@
 
 int usernameExists(const char* username);
 int saveUser(const char* username, const char* password);
+int verifyCredentials(const char* username, const char* password);
 
 #endif

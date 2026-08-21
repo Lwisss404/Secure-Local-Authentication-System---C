@@ -5,6 +5,7 @@
 
 typedef enum {
     INPUT_OK,
+    INPUT_ERROR,
     INPUT_TOO_LONG
 } inputResult;
 
